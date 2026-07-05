@@ -136,10 +136,36 @@ names:
 
 В README и отчёте это соответствует классам `костер` и `автомобиль`.
 
-Сбор кадров из симулятора:
+Автосбор кадров из симулятора: коптер сам взлетает, облетает точки над блоками, сохраняет кадры и садится обратно на marker `42`.
 
 ```bash
-python3 scripts/collectDataset.py --duration 120 --interval 0.3
+python3 scripts/collectDataset.py
+```
+
+По умолчанию сохраняется примерно `100` изображений: `10` точек маршрута x `10` кадров на точку.
+
+Папка сохранения по умолчанию:
+
+```text
+dataset/images_raw
+```
+
+Если нужно писать сразу в shared folder VM:
+
+```bash
+python3 scripts/collectDataset.py --output-dir /mnt/vm_shared/firesafety_dataset/images_raw
+```
+
+Быстрый тест только на первых трёх точках:
+
+```bash
+python3 scripts/collectDataset.py --max-points 3
+```
+
+Старый режим без полёта тоже оставлен:
+
+```bash
+python3 scripts/collectDataset.py --skip-flight --duration 60 --interval 0.5
 ```
 
 Обучение YOLO11n:
