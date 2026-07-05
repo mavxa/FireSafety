@@ -1,8 +1,7 @@
-path: ../dataset
-train: images/train
-val: images/val
-test: images/test
+train: train/images
+val: valid/images
+test: test/images
 
 names:
-  0: fire
-  1: car
+  0: car
+  1: fire

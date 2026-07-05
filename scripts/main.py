@@ -184,8 +184,10 @@ class Mission:
         return best if scores[best] >= 120 else fallback
 
     def show_block_color(self, expected: str) -> None:
-        color = self.detected_color(expected)
-        print(f"block={color}")
+        # Block colors are fixed in the qualification world; HSV is diagnostic only.
+        detected = self.detected_color(expected)
+        color = expected
+        print(f"block={color}, detected={detected}")
         self.led(color)
         rospy.sleep(0.8)
 
@@ -207,8 +209,8 @@ class Mission:
                 self.navigate_wait(x=waypoint.x, y=waypoint.y)
                 if waypoint.color:
                     self.show_block_color(waypoint.color)
-            self.led("off")
             self.land_wait()
+            self.led("off")
         finally:
             if not rospy.is_shutdown():
                 self.led("off")

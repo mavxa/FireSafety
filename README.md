@@ -128,8 +128,8 @@ YOLO/Ultralytics обычно удобнее с ASCII class names. Чтобы н
 
 ```yaml
 names:
-  0: fire
-  1: car
+  0: car
+  1: fire
 ```
 
 Пример лежит в `ml/data.example.yaml`.
@@ -173,8 +173,33 @@ python3 scripts/collectDataset.py --skip-flight --duration 60 --interval 0.5
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -U pip ultralytics
-python3 scripts/trainYolo.py --data dataset/data.yaml --model yolo11n.pt --epochs 100 --batch 8 --device cpu --export-onnx
+pip install -U pip
+pip install torch==2.12.1+cpu torchvision==0.27.1+cpu --index-url https://download.pytorch.org/whl/cpu
+pip install ultralytics
+python3 scripts/trainYolo.py \
+  --data ml/data.yaml \
+  --model yolo11n.pt \
+  --epochs 40 \
+  --batch 8 \
+  --imgsz 640 \
+  --device cpu \
+  --patience 10 \
+  --export-onnx
+```
+
+Текущий обученный результат:
+
+```text
+runs/detect/firesafety_yolo11n/weights/best.pt
+runs/detect/firesafety_yolo11n/weights/best.onnx
+```
+
+Метрики на test split после обучения YOLO11n:
+
+```text
+all:  mAP50=0.995, mAP50-95=0.956
+car:  mAP50=0.995, mAP50-95=0.918
+fire: mAP50=0.995, mAP50-95=0.995
 ```
 
 Результат для сдачи ML-части:

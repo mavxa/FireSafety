@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 runs/
 dataset/
+submission/
 *.mp4
 *.avi
 *.mkv

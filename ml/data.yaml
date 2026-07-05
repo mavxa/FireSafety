@@ -1,0 +1,13 @@
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 2
+names: ['car', 'fire']
+
+roboflow:
+  workspace: mrrobotnahuy
+  project: gazebofire
+  version: 1
+  license: Private
+  url: https://app.roboflow.com/mrrobotnahuy/gazebofire/1
