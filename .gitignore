@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+runs/
+dataset/
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.pt
+*.onnx
