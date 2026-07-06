@@ -5,6 +5,7 @@ __pycache__/
 runs/
 dataset/
 submission/
+A2026_FireSafety_submission/
 *.mp4
 *.avi
 *.mkv
